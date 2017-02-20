@@ -16,6 +16,16 @@ html, body {
         background-color: blue;
       }
 
+      .player-laser {
+        height: 15px;
+        width: 5px;
+        position: absolute;
+        margin-top: -7.5px;
+        margin-left: -2.5px;
+        background-color: grey;
+        display: none;
+      }
+
       .alien {
         height: 20px;
         width: 20px;

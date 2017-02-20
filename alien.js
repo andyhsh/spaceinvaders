@@ -2,7 +2,7 @@
 var Alien = function(x, y) {
 	this.x = x; //set coordinates
 	this.y = y;
-	this.speed = 10;
+	this.speed = 1;
 };
 
 //movement for aliens
