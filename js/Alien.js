@@ -9,10 +9,10 @@
 //define different Alien Types of properties
 var AlienType1 = function() {
 
-	    this.position = {
+	this.position = {
         "x": 300,
         "y": 100
-    	}
+	}
 
     var health = 1
     var speed = 15;
@@ -54,16 +54,17 @@ var AlienType1 = function() {
 
 	function movement(){
 
-	self.element.style.top = self.y + "px";
-	self.element.style.left = self.x + "px";
-
 		if (self.motion.right){
-	    self.position.x += speed;
+	    	self.position.x += speed;
 	    }
 
 	    if (self.motion.left){
-	    self.position.x -= speed;
+	    	self.position.x -= speed;
 	    }
+
+        self.element.style.top = self.position.y + "px";
+        self.element.style.left = self.position.x + "px";
+
 	}
 
 	    	// if (moveLeft) {
@@ -88,7 +89,7 @@ var AlienType1 = function() {
         movement();
         edgeDetect();
         //coordinates tracker working
-        console.log(self.position.x, self.position.y);
+        ///console.log(self.position.x, self.position.y);
     }
     create();
 }

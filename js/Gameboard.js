@@ -7,6 +7,10 @@ var GameBoard = function(){
     var rock = new Rock();
     var alien = new AlienType1();
 
+    var aliens = [];
+
+
+
     /*
      * Game Environment
      */
