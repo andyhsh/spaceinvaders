@@ -3,9 +3,9 @@ var Player = function(){
     /*
      * Game variables
      */
-    var speed = 20;
-    var heath = 100;
-    var maxLaser = 20;
+    var speed = 10;
+    var health = 100;
+    var maxLaser = 2;
 
     /*
      * Game Environment
@@ -13,10 +13,12 @@ var Player = function(){
     var lasers = [];
     var position = {
         "x": window.innerWidth / 2,
-        "y": window.innerHeight - 25
+        "y": window.innerHeight - 50
     };
 
     var element = document.getElementById("player");
+    
+//Shoot laser function
     var shoot = function(){
 
         if(lasers.length >= maxLaser){
@@ -26,7 +28,7 @@ var Player = function(){
         lasers.push(new Laser(position.x, position.y));
     }
 
-
+//Movement function
     function move(movement){
         if(movement.right){
             position.x += speed;
@@ -37,8 +39,25 @@ var Player = function(){
         }
     }
 
+//Edge detection for movement
+    function edgeDetect(){
+        //Collision detection for wall
+        if(position.x <= 20){
+          position.x = 20;
+        }
+      
+        if(position.x >= (window.innerWidth-20)){
+          position.x = window.innerWidth-20;
+        }
+    }
+    
+
     this.render = function(movement){
 
+        //Track coordinates
+        //console.log('Coordinates ' + position.x, position.y);
+
+        //Control movement of player
         if(movement.left || movement.right){
             move(movement);
         }
@@ -50,6 +69,9 @@ var Player = function(){
         element.style.left = position.x;
         element.style.top = position.y;
 
+        edgeDetect();
+
+        //Remove lasers when reach the top of the screen
         lasers.forEach(function(el, index){
             el.render();
 

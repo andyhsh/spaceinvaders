@@ -4,8 +4,8 @@ var GameBoard = function(){
      * Game variables
      */
     var player = new Player();
-
-
+    var rock = new Rock();
+    var alien = new AlienType1();
 
     /*
      * Game Environment
@@ -55,11 +55,13 @@ var GameBoard = function(){
         }
     });
 
+    //rendering
 
     function render(){
-        console.log("game loop");
-
+ 
         player.render(movement);
+        rock.render();
+        alien.render();
     }
 
 
@@ -73,7 +75,7 @@ var GameBoard = function(){
 }
 
 window.requestAnimFrame = (function(){
-    return  window.requestAnimationFrame       ||
+    return  window.requestAnimationFrame   ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame    ||
         function( callback ){
