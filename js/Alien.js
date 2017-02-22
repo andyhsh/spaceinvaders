@@ -7,29 +7,34 @@
 //     this.speed = 1;
 // }
 //define different Alien Types of properties
-var AlienType1 = function() {
+
+
+
+var AlienType1 = function(x,y) {
 
 	this.position = {
-        "x": 300,
-        "y": 100
+        "x": x,
+        "y": y
 	}
 
     var health = 1
-    var speed = 15;
-    this.element = null;
+    var speed = 2;
+    var lasers = [];
+    //this.element = null;
 
     var self = this;
 
     var create = function () {
 
-        self.element = document.createElement("div");
-        self.element.classList.add("alien");
+	        self.element = document.createElement("div");
+	        self.element.classList.add("alien");
 
-        self.element.style.top = self.position.y + "px";
-        self.element.style.left = self.position.x + "px";
+	        self.element.style.top = self.position.y + "px";
+	        self.element.style.left = self.position.x + "px";
 
-        var gameBoard = document.getElementById("gameboard");
-        gameBoard.appendChild(self.element);
+	        var gameBoard = document.getElementById("gameboard");
+	        gameBoard.appendChild(self.element);
+	    
     }
 
     this.motion = {
@@ -67,27 +72,31 @@ var AlienType1 = function() {
 
 	}
 
-	    	// if (moveLeft) {
-	    	// 	self.position.x -= speed;
-	    	// 	self.element.style.left = self.position.x + "px";
-	    	// } else if (moveRight) {
-	    	// 	self.position.x += speed;
-	    	// 	self.element.style.left = self.position.x + "px";
-	    	// }
+	//Randomly generate lasers
+	function shoot(){
+		if (Math.random() >= 0.999) {
+        	lasers.push(new Enemylaser(self.position.x, self.position.y));
+		}
 
-	    	// if (self.position.x >= window.innerWidth) {
-	    	// 	console.log('hit right wall');
-	    	// 	moveLeft = true;
-	    	// 	moveRight = false;
-	    	// } else if (self.position.x <= 0) {
-	    	// 	console.log('hit left wall');
-	    	// 	moveleft = false;
-	    	// 	moveRight = true;
-	    	// }
+	}
 
     this.render = function(){
         movement();
         edgeDetect();
+        shoot();
+
+        //Remove lasers when reach the top of the screen
+        lasers.forEach(function(el, index){
+            el.render();
+
+            if(el.position.y > window.innerHeight){
+
+            el.element.remove();
+            console.log('remove enemy laser!');
+            lasers.splice(index,1);
+        	}
+        })
+        
         //coordinates tracker working
         ///console.log(self.position.x, self.position.y);
     }

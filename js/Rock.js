@@ -1,30 +1,25 @@
-var Rock = function() {
+var Rock = function(x,y) {
 
     this.position = {
-        "x": 300,
-        "y": window.innerHeight - 200
+        "x": x,
+        "y": y
     }
 
-    var speed = 0;
     //this.element = null;
 
     var self = this;
 
     var createRock = function () {
 
-    	var positionSpacer = 0
+            self.element = document.createElement("div");
+            self.element.classList.add("rock");
 
-    	for (var i = 0; i < 3; i++) {
-        self.element = document.createElement("div");
-        self.element.classList.add("rock");
+            self.element.style.top = self.position.y + "px";
+            self.element.style.left = self.position.x + "px";
 
-        self.element.style.top = self.position.y + "px";
-        self.element.style.left = self.position.x + positionSpacer + "px";
-
-        var gameBoard = document.getElementById("gameboard");
-        gameBoard.appendChild(self.element);
-        positionSpacer += 200;
-    	};
+            var gameBoard = document.getElementById("gameboard");
+            gameBoard.appendChild(self.element);
+    	
     }
 
 //Collision detection for lasers
@@ -37,12 +32,32 @@ var Rock = function() {
 		// 	};
 		// }
 
+/*
+//Change state depending on health remaining
+    var health = 4;
+    function rockCondition() {
+        switch (health){
+            case 4:
+            //full health image
+            break;
+            case 3:
+            //3/4 health image
+            break;
+            case 2:
+            //half health image
+            break;
+            case 1:
+            //single hangle image
+        }
+
+    }
+*/
 
     this.render = function(){
     	// Coordinates tracker
 
         self.element.style.top = self.position.y + "px";
-        // edgeDetect();
+        // rockCondition();
     }
 
     createRock();

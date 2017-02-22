@@ -6,7 +6,7 @@ var Laser = function(x,y) {
     }
 
     var speed = 20;
-    this.element = null;
+    //this.element = null;
 
     var self = this;
 
@@ -29,7 +29,7 @@ var Laser = function(x,y) {
         self.element.style.top = self.position.y + "px";
 
         //coordinates tracker working
-        console.log(self.position.x, self.position.y);
+        //console.log(self.position.x, self.position.y);
     }
 
     create();

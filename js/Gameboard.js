@@ -4,12 +4,35 @@ var GameBoard = function(){
      * Game variables
      */
     var player = new Player();
-    var rock = new Rock();
-    var alien = new AlienType1();
-
     var aliens = [];
+    var rocks = [];
 
+    //spawn 10 aliens    
+    function spawnAliens(y) {
+    var x = 100;
+    var y = y;
+    for (var i = 0; i < 10; i++) {
+        aliens.push(new AlienType1(x,y));
+        x +=75;
+        }
+    }
 
+    spawnAliens(100);
+    spawnAliens(150);
+    spawnAliens(200);
+    spawnAliens(250);
+    spawnAliens(300);
+
+    function spawnRocks() {
+    var y = window.innerHeight - 200;
+    var x = 300;
+    for (var i = 0; i < 3; i++) {    
+        rocks.push(new Rock(x,y));
+        x += 200;
+        }
+    } 
+
+    spawnRocks();  
 
     /*
      * Game Environment
@@ -24,6 +47,27 @@ var GameBoard = function(){
         "right":false,
         "shoot":false
     };
+
+    //Collision detection
+        
+
+        // function collisionDetection(){
+
+
+
+        //          var rockDetect = document.querySelector('.rock').getClientRects()[0];
+        //          var laserDetect = document.querySelector('.player-laser').getClientRects()[0];
+
+        //           if (rockDetect.left < laserDetect.left + laserDetect.width &&
+        //              rockDetect.left + rockDetect.width > laserDetect.left &&
+        //              rockDetect.top < laserDetect.top + laserDetect.height &&
+        //              rockDetect.height + rockDetect.top > laserDetect.top) {
+        //               console.log('ok!');
+        //           };
+                
+        //     }
+
+
 
     /*
      * Event listeners
@@ -64,8 +108,16 @@ var GameBoard = function(){
     function render(){
  
         player.render(movement);
-        rock.render();
-        alien.render();
+
+        for (var i = 0; i < rocks.length; i++){
+            rocks[i].render();
+        }
+
+        for (var i = 0; i < aliens.length; i++){
+            aliens[i].render();
+        }
+
+        // collisionDetection();
     }
 
 

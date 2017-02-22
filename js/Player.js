@@ -3,9 +3,9 @@ var Player = function(){
     /*
      * Game variables
      */
-    var speed = 10;
+    var speed = 8;
     var health = 100;
-    var maxLaser = 2;
+    var maxLaser = 1;
 
     /*
      * Game Environment

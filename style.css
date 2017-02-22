@@ -12,7 +12,8 @@ html, body {
         position: absolute;
         margin-left: -20px;
         margin-top: -12.5px;
-        background-color: blue;
+        background-image: url("images/player.png");
+        background-size: 100%;
       }
 
       .rock {
@@ -25,21 +26,35 @@ html, body {
       }
 
       .player-laser {
-        height: 15px;
+        height: 35px;
         width: 5px;
         position: absolute;
         margin-top: -7.5px;
         margin-left: -2.5px;
-        background-color: grey;
+        background-image: url("images/player-laser.png");
+        background-size: 100%;
+
+      }
+
+        .enemy-laser {
+        height: 35px;
+        width: 5px;
+        position: absolute;
+        margin-top: -7.5px;
+        margin-left: -2.5px;
+        background-image: url("images/enemy-laser.png");
+        background-size: 100%;
+
       }
 
       .alien {
         height: 20px;
-        width: 20px;
+        width: 30px;
         position: absolute;
         margin-top: -10px;
         margin-left: -10px;
-        background-color: red;
+        background-image: url("images/enemies/enemyBlack1.png");
+        background-size: 100%;
       }
 
       #ufo-bonus {
