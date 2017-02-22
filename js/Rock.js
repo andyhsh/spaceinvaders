@@ -1,5 +1,7 @@
 var Rock = function(x,y) {
 
+    this.health = 4;
+
     this.position = {
         "x": x,
         "y": y
@@ -22,16 +24,6 @@ var Rock = function(x,y) {
     	
     }
 
-//Collision detection for lasers
-		// function edgeDetect(){
-		// 	if (rect1.x < rect2.x + rect2.width &&
-		// 	   rect1.x + rect1.width > rect2.x &&
-		// 	   rect1.y < rect2.y + rect2.height &&
-		// 	   rect1.height + rect1.y > rect2.y) {
-		// 	    console.log('ok!');
-		// 	};
-		// }
-
 /*
 //Change state depending on health remaining
     var health = 4;
@@ -52,6 +44,12 @@ var Rock = function(x,y) {
 
     }
 */
+
+//rock collision detection
+    function blowUp(){
+        self.health -= 1;
+
+    }
 
     this.render = function(){
     	// Coordinates tracker

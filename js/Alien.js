@@ -19,7 +19,7 @@ var AlienType1 = function(x,y) {
 
     var health = 1
     var speed = 2;
-    var lasers = [];
+    this.lasers = [];
     //this.element = null;
 
     var self = this;
@@ -75,7 +75,7 @@ var AlienType1 = function(x,y) {
 	//Randomly generate lasers
 	function shoot(){
 		if (Math.random() >= 0.999) {
-        	lasers.push(new Enemylaser(self.position.x, self.position.y));
+        	self.lasers.push(new Enemylaser(self.position.x, self.position.y));
 		}
 
 	}
@@ -86,17 +86,17 @@ var AlienType1 = function(x,y) {
         shoot();
 
         //Remove lasers when reach the top of the screen
-        lasers.forEach(function(el, index){
+        self.lasers.forEach(function(el, index){
             el.render();
 
             if(el.position.y > window.innerHeight){
 
             el.element.remove();
-            console.log('remove enemy laser!');
-            lasers.splice(index,1);
+            //console.log('remove enemy laser!');
+            self.lasers.splice(index,1);
         	}
         })
-        
+
         //coordinates tracker working
         ///console.log(self.position.x, self.position.y);
     }

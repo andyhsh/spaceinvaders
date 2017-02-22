@@ -4,28 +4,30 @@ var Player = function(){
      * Game variables
      */
     var speed = 8;
-    var health = 100;
+    this.health = 100;
     var maxLaser = 1;
 
     /*
      * Game Environment
      */
-    var lasers = [];
+    this.lasers = [];
     var position = {
         "x": window.innerWidth / 2,
         "y": window.innerHeight - 50
     };
 
     var element = document.getElementById("player");
+
+    var self = this;
     
 //Shoot laser function
     var shoot = function(){
 
-        if(lasers.length >= maxLaser){
+        if(self.lasers.length >= maxLaser){
             return;
         }
 
-        lasers.push(new Laser(position.x, position.y));
+        self.lasers.push(new Laser(position.x, position.y));
     }
 
 //Movement function
@@ -51,6 +53,7 @@ var Player = function(){
         }
     }
     
+    
 
     this.render = function(movement){
 
@@ -72,14 +75,14 @@ var Player = function(){
         edgeDetect();
 
         //Remove lasers when reach the top of the screen
-        lasers.forEach(function(el, index){
+        self.lasers.forEach(function(el, index){
             el.render();
 
             if(el.position.y < 0 ){
 
 
                 el.element.remove();
-                lasers.splice(index,1);
+                self.lasers.splice(index,1);
             }
         });
     }

@@ -24,6 +24,7 @@ var Laser = function(x,y) {
 
 
 
+
     this.render = function(){
         self.position.y -= speed;
         self.element.style.top = self.position.y + "px";

@@ -1,11 +1,15 @@
+var player = new Player();
+var aliens = [];
+var rocks =  [];
+
 var GameBoard = function(){
 
     /*
      * Game variables
      */
-    var player = new Player();
-    var aliens = [];
-    var rocks = [];
+    player = new Player();
+    aliens = [];
+    rocks = [];
 
     //spawn 10 aliens    
     function spawnAliens(y) {
@@ -51,21 +55,27 @@ var GameBoard = function(){
     //Collision detection
         
 
-        // function collisionDetection(){
+        function collisionDetection(){
 
+            //detection for rocks with player lasers
+            rocks.forEach(function(el, index){
+                if (player.lasers.length != 0) {
+                     var rockDetect = rocks[index].element.getClientRects()[0];
+                     var laserDetect = player.lasers[0].element.getClientRects()[0];
 
+                      if (rockDetect.left < laserDetect.left + laserDetect.width &&
+                         rockDetect.left + rockDetect.width > laserDetect.left &&
+                         rockDetect.top < laserDetect.top + laserDetect.height &&
+                         rockDetect.height + rockDetect.top > laserDetect.top) {
 
-        //          var rockDetect = document.querySelector('.rock').getClientRects()[0];
-        //          var laserDetect = document.querySelector('.player-laser').getClientRects()[0];
-
-        //           if (rockDetect.left < laserDetect.left + laserDetect.width &&
-        //              rockDetect.left + rockDetect.width > laserDetect.left &&
-        //              rockDetect.top < laserDetect.top + laserDetect.height &&
-        //              rockDetect.height + rockDetect.top > laserDetect.top) {
-        //               console.log('ok!');
-        //           };
-                
-        //     }
+                            console.log('blow up');
+                            player.lasers[0].element.remove();
+                            player.lasers.splice(0,1);
+                            // rocks[0].blowUp();
+                        }
+                }
+            })
+        }
 
 
 
@@ -117,7 +127,7 @@ var GameBoard = function(){
             aliens[i].render();
         }
 
-        // collisionDetection();
+        collisionDetection();
     }
 
 
