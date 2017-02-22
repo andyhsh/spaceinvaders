@@ -26,7 +26,7 @@ var Player = function(){
         if(self.lasers.length >= maxLaser){
             return;
         }
-
+        laserfx.play();
         self.lasers.push(new Laser(position.x, position.y));
     }
 
@@ -53,7 +53,7 @@ var Player = function(){
         }
     }
     
-    
+
 
     this.render = function(movement){
 
@@ -79,7 +79,6 @@ var Player = function(){
             el.render();
 
             if(el.position.y < 0 ){
-
 
                 el.element.remove();
                 self.lasers.splice(index,1);

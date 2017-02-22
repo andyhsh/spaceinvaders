@@ -46,16 +46,24 @@ var Rock = function(x,y) {
 */
 
 //rock collision detection
-    function blowUp(){
-        self.health -= 1;
-
+    this.hit = function(index){
+        self.health--;
+        console.log('minus health');
+        if (self.health === 3) {
+            self.element.style.opacity = 0.75;
+        } else if (self.health === 2) {
+            self.element.style.opacity = 0.5;
+        } else if (self.health === 1) {
+            self.element.style.opacity = 0.25;
+        } else {
+            rocks[index].element.remove();
+            rocks.splice(index,1);
+        }
     }
 
     this.render = function(){
-    	// Coordinates tracker
-
         self.element.style.top = self.position.y + "px";
-        // rockCondition();
+        //self.condition();
     }
 
     createRock();

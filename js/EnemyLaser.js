@@ -5,7 +5,7 @@ var Enemylaser = function(x,y) {
         "y": y
     }
 
-    var speed = 5;
+    var speed = 3;
     //this.element = null;
 
     var self = this;
