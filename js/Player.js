@@ -16,7 +16,7 @@ var Player = function(){
         "y": window.innerHeight - 50
     };
 
-    var element = document.getElementById("player");
+    this.element = document.getElementById("player");
 
     var self = this;
     
@@ -69,8 +69,8 @@ var Player = function(){
             shoot();
         }
 
-        element.style.left = position.x;
-        element.style.top = position.y;
+        self.element.style.left = position.x;
+        self.element.style.top = position.y;
 
         edgeDetect();
 

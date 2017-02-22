@@ -5,6 +5,8 @@ html, body {
         margin: 0;
         overflow: hidden;
         background-image: url("images/background.jpg");
+        font-family: 'Share Tech Mono', monospace;
+        color: white;
       }
       
       #player {
@@ -59,6 +61,26 @@ html, body {
         background-size: 100% 100%;
       }
 
+      .alien2 {
+        height: 20px;
+        width: 30px;
+        position: absolute;
+        margin-top: -10px;
+        margin-left: -10px;
+        background-image: url("images/enemies/enemyGreen2.png");
+        background-size: 100% 100%;
+      }
+
+      .alien3 {
+        height: 20px;
+        width: 30px;
+        position: absolute;
+        margin-top: -10px;
+        margin-left: -10px;
+        background-image: url("images/enemies/enemyRed5.png");
+        background-size: 100% 100%;
+      }
+
       #ufo-bonus {
         height: 20px;
         width: 30px;
@@ -69,14 +91,17 @@ html, body {
       
       #gameboard {
         
-        height: 100%;
-        width: 100%;
+      
       }
 
       #score-tracker {
-
+      font-size: 30px;
+      position: absolute;
+      left: 10%;
       }
 
       #life-tracker {
-        
+      font-size: 30px;
+      position: absolute;
+      left: 70%;
       }

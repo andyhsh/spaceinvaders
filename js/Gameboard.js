@@ -1,7 +1,10 @@
 var player = new Player();
 var aliens = [];
 var rocks =  [];
-var laserfx = new Audio('./sound/laser.mp3');
+
+var laserfx = new Audio('./sound/laser2.wav');
+var explodefx = new Audio('./sound/explosion.wav');
+var playerexplodefx = new Audio('./sound/playerexplosion.wav');
 
 var GameBoard = function(){
 
@@ -11,8 +14,8 @@ var GameBoard = function(){
     player = new Player();
     aliens = [];
     rocks = [];
-
-
+    var score = 0;
+    var lives;
 
     //spawn 10 aliens    
     function spawnAliens(y) {
@@ -72,6 +75,7 @@ var GameBoard = function(){
                          rockDetect.height + rockDetect.top > laserDetect.top) {
 
                             console.log('hit rock #' + index);
+                            //remove player lasers and register hit on rock
                             player.lasers[0].element.remove();
                             player.lasers.splice(0,1);
                             rocks[index].hit(index);  
@@ -94,6 +98,7 @@ var GameBoard = function(){
                                 //remove player's lasers 
                                 player.lasers[0].element.remove();
                                 player.lasers.splice(0,1);
+                                score++
                                 //remove alien's lasers
                                 if (aliens[index].lasers.length != 0) {
                                     aliens[index].lasers[0].element.remove();     
@@ -101,15 +106,16 @@ var GameBoard = function(){
                                 //remove aliens
                                 aliens[index].element.remove();
                                 aliens.splice(index,1);
+                                explodefx.play();
                                 
                             }                  
                     }
            }) 
-/*
+
                 //detection for enemy lasers with player
                 aliens.forEach(function(el, index){
-                    if (aliens[index].lasers != 0) {
-                        var alienLasersDetect = aliens[index].lasers.element.getClientRects()[0];
+                    if (aliens[index].lasers.length != 0) {
+                        var alienLasersDetect = aliens[index].lasers[0].element.getClientRects()[0];
                         var playerDetect = player.element.getClientRects()[0];
 
                           if (alienLasersDetect.left < playerDetect.left + playerDetect.width &&
@@ -118,12 +124,25 @@ var GameBoard = function(){
                              alienLasersDetect.height + alienLasersDetect.top > playerDetect.top) {
 
                             console.log('you\'ve been hit by alien #' + aliens[index]);
+                            playerexplodefx.play();
+                            player.health--;
+                            console.log('you have' + player.health + 'left')
+                            //remove enemy lasers
+                            aliens[index].lasers[0].element.remove(); 
+                            aliens[index].lasers.splice(0,1);
                             }
                     }
 
-                }) */
+                }) 
         }   
 
+    //scoreboard
+    function scoreBoard () {
+    var scoreElement = document.getElementById('score');
+    var livesElement = document.getElementById('lives');
+    scoreElement.textContent = score;
+    livesElement.textContent = player.health;
+    }
 
     /*
      * Event listeners
@@ -174,6 +193,7 @@ var GameBoard = function(){
         }
 
         collisionDetection();
+        scoreBoard();
     }
 
 
