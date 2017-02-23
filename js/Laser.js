@@ -14,7 +14,7 @@ var Laser = function(x,y) {
 
         self.element = document.createElement("div");
         self.element.classList.add("player-laser");
-
+        
         self.element.style.top = self.position.y + "px";
         self.element.style.left = self.position.x + "px";
 

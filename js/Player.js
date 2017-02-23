@@ -18,21 +18,21 @@ var Player = function(){
 
     var self = this;
 
-    this.element = document.getElementById("player");
+    // this.element = document.getElementById("player");
     this.livesElement = document.getElementsByClassName("lives");
 
 //Create player
-    // var create = function () {
+    var create = function () {
 
-    //     self.element = document.createElement("div");
-    //     self.element.setAttribute("id", "player");
+        self.element = document.createElement("div");
+        self.element.setAttribute("id", "player");
 
-    //     self.element.style.top = self.position.y + "px";
-    //     self.element.style.left = self.position.x + "px";
+        self.element.style.top = self.position.y + "px";
+        self.element.style.left = self.position.x + "px";
 
-    //     var gameBoard = document.getElementById("gameboard");
-    //     gameBoard.appendChild(self.element);
-    // }
+        var gameBoard = document.getElementById("gameboard");
+        gameBoard.appendChild(self.element);
+    }
 
 //Lives tracker
     this.hit = function() {
@@ -44,8 +44,8 @@ var Player = function(){
             self.lives--;
             self.livesElement[0].remove()
             console.log('GAMEOVER');
+            gameOver();
         }
-
     }
     
     
@@ -111,5 +111,5 @@ var Player = function(){
             }
         });
     }
-    
+    create();
 }

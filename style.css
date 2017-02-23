@@ -46,7 +46,7 @@ html, body {
         margin-top: -25px;
         background-image: url("images/rock1.png");
         background-size: 100% 100%;
-        z-index: -1;
+        z-index: 0;
       }
 
       .player-laser {
@@ -121,7 +121,11 @@ html, body {
       position: absolute;
       left: 500px;
       top: 20px;
+      }
 
+      #life-tracker ul{
+      padding: 0;
+      margin: 0;
       }
 
       #life-tracker ul li{
@@ -132,6 +136,23 @@ html, body {
         position: absolute;    
         font-size: 120px;
         letter-spacing: 0.2em;
+      }
+
+      #gameover {
+        position: absolute;
+        top: 150px;
+        left: 170px;        
+        z-index: -1;
+        line-height: 5.5em      
+      }
+
+      #gameover h1 {
+        font-size: 80px;
+        ;
+      }
+
+      #retrybutton {
+        color: red;
       }
 
       #title {

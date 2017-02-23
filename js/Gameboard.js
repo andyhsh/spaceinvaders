@@ -1,13 +1,29 @@
 //game states
-
 var gameState = 'startscreen';
 
+//start button
 var startButton = document.getElementById('startbutton');
 startButton.addEventListener('click', function(){
     console.log('start game!');
     gameState = 'gamestart';
     document.getElementById('start').style.zIndex = -1;
 })
+
+//retry button
+var retryButton = document.getElementById('retrybutton');
+retryButton.addEventListener('click', function(){
+    console.log('retry!');
+    gameBoard.player.lives = 3;
+    gameState = 'gamestart';
+    document.getElementById('gameover').style.zIndex = -1;
+})
+
+//gameover function
+function gameOver() {
+    gameState = 'gameover';
+    document.getElementById('gameover').style.zIndex = 1;
+    document.getElementById('gameover').classList.add('animated', 'slideInUp');
+}
 
 //set gamescreen dimensions
 this.screenHeight = document.getElementById('gameboard').getClientRects()[0].height;
@@ -254,7 +270,7 @@ var GameBoard = function(){
 
     function render(){
  
-        if (gameState === 'gamestart') {
+        if (gameState != 'startscreen' && gameState != 'gameover') {
 
         self.player.render(movement);
 

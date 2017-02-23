@@ -1,15 +1,3 @@
-// var Alien = function(x,y) {
-
-//     this.position = {
-//         "x": x,
-//         "y": y
-//     };
-//     this.speed = 1;
-// }
-//define different Alien Types of properties
-
-
-
 var AlienType1 = function(x, y, speed, type) {
 
 	this.position = {
@@ -21,7 +9,6 @@ var AlienType1 = function(x, y, speed, type) {
     this.speed = speed;
     var maxLasers = 1;
     this.lasers = [];
-    //this.element = null;
 
     var self = this;
 
@@ -48,13 +35,13 @@ var AlienType1 = function(x, y, speed, type) {
 	function edgeDetect(){
 	    	
 	    //Right Wall: detect width - half the alien's total width
-	    if (self.position.x >= (screenWidth-10)){
+	    if (self.position.x >= (screenWidth-15)){
 	    	self.motion.right = false;
 	    	self.motion.down = true;
 	    	setTimeout(function(){self.motion.down = false; self.motion.left = true}, 400);
 	    }
 	    //Left wall
-	    if (self.position.x <= 10){
+	    if (self.position.x <= 15){
 	    	self.motion.left = false;
 	    	self.motion.down = true;
 	    	setTimeout(function(){self.motion.down = false; self.motion.right = true}, 400);
@@ -106,30 +93,6 @@ var AlienType1 = function(x, y, speed, type) {
             self.lasers.splice(index,1);
         	}
         })
-
-        //coordinates tracker working
-        ///console.log(self.position.x, self.position.y);
     }
     create();
 }
-
-/* to define other types of aliens later
-var AlienType2 = function() {
-
-
-
-}
-
-var AlienType3 = function() {
-
-
-}
-*/
-
-// assign AlienTypes prototype to inherit from Alien
-// AlienType1.prototype = Object.create(Alien.prototype);
-
-/*
-AlienType2.prototype = Object.create(Alien.prototype);
-AlienType3.prototype = Object.create(Alien.prototype);
-*/
