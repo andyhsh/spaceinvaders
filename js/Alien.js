@@ -50,16 +50,14 @@ var AlienType1 = function(x, y, speed, type) {
 	    //Right Wall: detect width - half the alien's total width
 	    if (self.position.x >= (screenWidth-10)){
 	    	self.motion.right = false;
-	    	self.motion.left = true;
 	    	self.motion.down = true;
-	    	setTimeout(function(){self.motion.down = false}, 400);
+	    	setTimeout(function(){self.motion.down = false; self.motion.left = true}, 400);
 	    }
 	    //Left wall
 	    if (self.position.x <= 10){
-	    	self.motion.right = true;
 	    	self.motion.left = false;
 	    	self.motion.down = true;
-	    	setTimeout(function(){self.motion.down = false}, 400);
+	    	setTimeout(function(){self.motion.down = false; self.motion.right = true}, 400);
 	    }
 	}
 

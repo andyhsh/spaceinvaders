@@ -11,15 +11,28 @@ var Player = function(){
      * Game Environment
      */
     this.lasers = [];
-    var position = {
+    this.position = {
         "x": screenWidth / 2,
         "y": screenHeight - 20
     };
 
+    var self = this;
+
     this.element = document.getElementById("player");
     this.livesElement = document.getElementsByClassName("lives");
 
-    var self = this;
+//Create player
+    // var create = function () {
+
+    //     self.element = document.createElement("div");
+    //     self.element.setAttribute("id", "player");
+
+    //     self.element.style.top = self.position.y + "px";
+    //     self.element.style.left = self.position.x + "px";
+
+    //     var gameBoard = document.getElementById("gameboard");
+    //     gameBoard.appendChild(self.element);
+    // }
 
 //Lives tracker
     this.hit = function() {
@@ -42,30 +55,30 @@ var Player = function(){
         if(self.lasers.length >= maxLaser){
             return;
         }
-        laserfx.play();
-        self.lasers.push(new Laser(position.x, position.y));
+        gameBoard.laserfx.play();
+        self.lasers.push(new Laser(self.position.x, self.position.y));
     }
 
 //Movement function
     function move(movement){
         if(movement.right){
-            position.x += speed;
+            self.position.x += speed;
         }
 
         if(movement.left){
-            position.x -= speed;
+            self.position.x -= speed;
         }
     }
 
 //Edge detection for movement
     function edgeDetect(){
         //Collision detection for wall
-        if(position.x <= 20){
-          position.x = 20;
+        if(self.position.x <= 20){
+          self.position.x = 20;
         }
       
-        if(position.x >= (screenWidth-20)){
-          position.x = screenWidth-20;
+        if(self.position.x >= (screenWidth-20)){
+          self.position.x = screenWidth-20;
         }
     }
     
@@ -82,8 +95,8 @@ var Player = function(){
             shoot();
         }
 
-        self.element.style.left = position.x;
-        self.element.style.top = position.y;
+        self.element.style.left = self.position.x;
+        self.element.style.top = self.position.y;
 
         edgeDetect();
 
@@ -98,4 +111,5 @@ var Player = function(){
             }
         });
     }
+    
 }

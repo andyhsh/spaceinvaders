@@ -39,8 +39,8 @@ var Rock = function(x,y) {
             case 1:
             self.element.style.opacity = 0.25;
             default:
-            rocks[index].element.remove();
-            rocks.splice(index,1);
+            gameBoard.rocks[index].element.remove();
+            gameBoard.rocks.splice(index,1);
         }
 
     }
