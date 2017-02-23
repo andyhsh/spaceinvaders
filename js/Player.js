@@ -3,8 +3,8 @@ var Player = function(){
     /*
      * Game variables
      */
-    var speed = 8;
-    this.health = 100;
+    var speed = 7;
+    this.lives = 3;
     var maxLaser = 1;
 
     /*
@@ -12,13 +12,29 @@ var Player = function(){
      */
     this.lasers = [];
     var position = {
-        "x": window.innerWidth / 2,
-        "y": window.innerHeight - 50
+        "x": screenWidth / 2,
+        "y": screenHeight - 20
     };
 
     this.element = document.getElementById("player");
+    this.livesElement = document.getElementsByClassName("lives");
 
     var self = this;
+
+//Lives tracker
+    this.hit = function() {
+        if (self.lives >= 2){
+            self.livesElement[0].remove()
+            self.lives--;
+            
+        } else if (self.lives === 1){
+            self.lives--;
+            self.livesElement[0].remove()
+            console.log('GAMEOVER');
+        }
+
+    }
+    
     
 //Shoot laser function
     var shoot = function(){
@@ -48,17 +64,14 @@ var Player = function(){
           position.x = 20;
         }
       
-        if(position.x >= (window.innerWidth-20)){
-          position.x = window.innerWidth-20;
+        if(position.x >= (screenWidth-20)){
+          position.x = screenWidth-20;
         }
     }
     
 
 
     this.render = function(movement){
-
-        //Track coordinates
-        //console.log('Coordinates ' + position.x, position.y);
 
         //Control movement of player
         if(movement.left || movement.right){

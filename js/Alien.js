@@ -10,7 +10,7 @@
 
 
 
-var AlienType1 = function(x,y) {
+var AlienType1 = function(x, y, speed, type) {
 
 	this.position = {
         "x": x,
@@ -18,7 +18,8 @@ var AlienType1 = function(x,y) {
 	}
 
     var health = 1
-    var speed = 2;
+    this.speed = speed;
+    var maxLasers = 1;
     this.lasers = [];
     //this.element = null;
 
@@ -27,7 +28,8 @@ var AlienType1 = function(x,y) {
     var create = function () {
 
 	        self.element = document.createElement("div");
-	        self.element.classList.add("alien");
+	        self.element.classList.add('animated', 'fadeInDown');
+	        self.element.classList.add(type);
 
 	        self.element.style.top = self.position.y + "px";
 	        self.element.style.left = self.position.x + "px";
@@ -46,25 +48,33 @@ var AlienType1 = function(x,y) {
 	function edgeDetect(){
 	    	
 	    //Right Wall: detect width - half the alien's total width
-	    if (self.position.x >= (window.innerWidth-10)){
+	    if (self.position.x >= (screenWidth-10)){
 	    	self.motion.right = false;
 	    	self.motion.left = true;
+	    	self.motion.down = true;
+	    	setTimeout(function(){self.motion.down = false}, 400);
 	    }
 	    //Left wall
 	    if (self.position.x <= 10){
 	    	self.motion.right = true;
 	    	self.motion.left = false;
+	    	self.motion.down = true;
+	    	setTimeout(function(){self.motion.down = false}, 400);
 	    }
 	}
 
 	function movement(){
 
 		if (self.motion.right){
-	    	self.position.x += speed;
+	    	self.position.x += self.speed;
 	    }
 
 	    if (self.motion.left){
-	    	self.position.x -= speed;
+	    	self.position.x -= self.speed;
+	    }
+
+	    if (self.motion.down){
+	    	self.position.y += self.speed;
 	    }
 
         self.element.style.top = self.position.y + "px";
@@ -74,10 +84,12 @@ var AlienType1 = function(x,y) {
 
 	//Randomly generate lasers
 	function shoot(){
-		if (Math.random() >= 0.999) {
-        	self.lasers.push(new Enemylaser(self.position.x, self.position.y));
-		}
-
+		if (self.lasers.length >= maxLasers) {
+			return;
+		} else	if (Math.random() >= 0.998) {
+	        	self.lasers.push(new Enemylaser(self.position.x, self.position.y));
+			}
+		
 	}
 
     this.render = function(){
@@ -89,7 +101,7 @@ var AlienType1 = function(x,y) {
         self.lasers.forEach(function(el, index){
             el.render();
 
-            if(el.position.y > window.innerHeight){
+            if(el.position.y > screenHeight){
 
             el.element.remove();
             //console.log('remove enemy laser!');
