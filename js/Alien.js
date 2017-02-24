@@ -86,7 +86,6 @@ var AlienType1 = function(x, y, speed, type) {
 	this.explode = function(index){
         gameBoard.aliens[index].element.remove();
         gameBoard.aliens.splice(index,1);
-        debugger;
         gameBoard.explodefx.play();
         
 	}
