@@ -26,9 +26,6 @@ var Enemylaser = function(x,y) {
     this.render = function(){
         self.position.y += speed;
         self.element.style.top = self.position.y + "px";
-
-        //coordinates tracker working
-        //console.log(self.position.x, self.position.y);
     }
 
     create();

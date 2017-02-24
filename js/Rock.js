@@ -7,8 +7,6 @@ var Rock = function(x,y) {
         "y": y
     }
 
-    //this.element = null;
-
     var self = this;
 
     var createRock = function () {
@@ -27,8 +25,9 @@ var Rock = function(x,y) {
 
 //Change state depending on health remaining
     this.hit = function(index){
+        console.log('hit rock');
         self.health--;
-        console.log('minus health');
+        gameBoard.explodefx.play();
         switch (self.health){
             case 3:
             self.element.style.opacity = 0.75;

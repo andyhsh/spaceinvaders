@@ -15,8 +15,7 @@ var AlienType1 = function(x, y, speed, type) {
     var create = function () {
 
 	        self.element = document.createElement("div");
-	        self.element.classList.add('animated', 'fadeInDown');
-	        self.element.classList.add(type);
+	        self.element.classList.add('animated', 'fadeInDown', type);
 
 	        self.element.style.top = self.position.y + "px";
 	        self.element.style.left = self.position.x + "px";
@@ -72,9 +71,24 @@ var AlienType1 = function(x, y, speed, type) {
 		if (self.lasers.length >= maxLasers) {
 			return;
 		} else	if (Math.random() >= 0.998) {
-	        	self.lasers.push(new Enemylaser(self.position.x, self.position.y));
+	        	self.lasers.push(new Laser(self.position.x, self.position.y, -3, "enemy-laser"));
 			}
 		
+	}
+
+	//Remove laser function
+    this.removeLaser = function(){
+        self.lasers[0].element.remove();
+        self.lasers.splice(0,1);
+    }
+
+	//explode when hit
+	this.explode = function(index){
+        gameBoard.aliens[index].element.remove();
+        gameBoard.aliens.splice(index,1);
+        debugger;
+        gameBoard.explodefx.play();
+        
 	}
 
     this.render = function(){

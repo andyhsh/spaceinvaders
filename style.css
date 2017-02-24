@@ -28,14 +28,22 @@ html, body {
       }
 
       #player {
-        height: 25px;
-        width: 40px;
+        height: 32px;
+        width: 50px;
         position: absolute;
-        margin-left: -20px;
-        margin-top: -12.5px;
+        margin-left: -25x;
+        margin-top: -16px;
         background-image: url("images/player.png");
         background-size: 100% 100%;
-        z-index: 0;
+        z-index: -1;
+      }
+
+      .bankleft {
+        background-image: url("images/playerbankleft.jpg");
+      }
+
+      .bankright {
+        background-image: url("images/playerbankright.jpg");
       }
 
       .rock {
@@ -46,7 +54,6 @@ html, body {
         margin-top: -25px;
         background-image: url("images/rock1.png");
         background-size: 100% 100%;
-        z-index: 0;
       }
 
       .player-laser {
@@ -114,6 +121,7 @@ html, body {
       position: absolute;
       left: 100px;
       top: 20px;
+      z-index: -1;
       }
 
       #life-tracker {
@@ -121,6 +129,7 @@ html, body {
       position: absolute;
       left: 500px;
       top: 20px;
+      z-index: -1;
       }
 
       #life-tracker ul{

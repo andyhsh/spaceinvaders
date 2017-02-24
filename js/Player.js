@@ -34,16 +34,35 @@ var Player = function(){
         gameBoard.appendChild(self.element);
     }
 
-//Lives tracker
+//hit tracker
     this.hit = function() {
+
+var bankLeftHit = self.element.style.backgroundImage="url(images/playerbanklefthit.png)";
+var bankRightHit = self.element.style.backgroundImage="url(images/playerbankrighthit.png)";
+var playerHit = self.element.style.backgroundImage="url(images/playerhit.png)";
+
+        gameBoard.playerexplodefx.play();
         if (self.lives >= 2){
             self.livesElement[0].remove()
             self.lives--;
+                if (gameBoard.movement.left) {
+                    bankLeftHit;
+                    } else if (gameBoard.movement.right) {
+                    bankRightHit;
+                    } else {
+                    playerHit;
+            }
             
         } else if (self.lives === 1){
             self.lives--;
             self.livesElement[0].remove()
-            console.log('GAMEOVER');
+                    if (gameBoard.movement.left) {
+                        bankLeftHit;
+                        } else if (gameBoard.movement.right) {
+                        bankRightHit;
+                        } else {
+                        playerHit;
+                        }
             gameOver();
         }
     }
@@ -56,7 +75,13 @@ var Player = function(){
             return;
         }
         gameBoard.laserfx.play();
-        self.lasers.push(new Laser(self.position.x, self.position.y));
+        self.lasers.push(new Laser(self.position.x, self.position.y, 15, "player-laser"));
+    }
+
+//Remove laser function
+    this.removeLaser = function(){
+        self.lasers[0].element.remove();
+        self.lasers.splice(0,1);
     }
 
 //Movement function
@@ -73,12 +98,12 @@ var Player = function(){
 //Edge detection for movement
     function edgeDetect(){
         //Collision detection for wall
-        if(self.position.x <= 20){
-          self.position.x = 20;
+        if(self.position.x <= 25){
+          self.position.x = 25;
         }
       
-        if(self.position.x >= (screenWidth-20)){
-          self.position.x = screenWidth-20;
+        if(self.position.x >= (screenWidth-25)){
+          self.position.x = screenWidth-25;
         }
     }
     
