@@ -10,7 +10,7 @@ html, body {
       }
 
       #start {
-        position: absolute;       
+        position: absolute;
         z-index: 1;
 
       }
@@ -20,9 +20,9 @@ html, body {
         top: 350px;
         left: 250px;
       }
-      
+
       #gameboard {
-        background-image: url("images/background.jpg");  
+        background-image: url("images/background.jpg");
         width: 800px;
         height: 600px;
       }
@@ -31,7 +31,7 @@ html, body {
         height: 32px;
         width: 50px;
         position: absolute;
-        margin-left: -25x;
+        margin-left: -25px;
         margin-top: -16px;
         background-image: url("images/player.png");
         background-size: 100% 100%;
@@ -47,7 +47,7 @@ html, body {
       }
 
       .rock {
-        height:50px;
+        height: 50px;
         width: 50px;
         position: absolute;
         margin-left: -25px;
@@ -82,7 +82,7 @@ html, body {
         height: 20px;
         width: 30px;
         position: absolute;
-        margin-top: -15px;
+        margin-top: -10px;
         margin-left: -10px;
         background-image: url("images/enemies/enemyBlack1.png");
         background-size: 100% 100%;
@@ -142,7 +142,7 @@ html, body {
       }
 
       h1 {
-        position: absolute;    
+        position: absolute;
         font-size: 120px;
         letter-spacing: 0.2em;
       }
@@ -150,9 +150,9 @@ html, body {
       #gameover {
         position: absolute;
         top: 150px;
-        left: 170px;        
+        left: 170px;
         z-index: -1;
-        line-height: 5.5em      
+        line-height: 5.5em
       }
 
       #gameover h1 {
