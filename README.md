@@ -4,5 +4,9 @@ My first project crafted for the Web Development Immersive course at General Ass
 
 ## Demo
 
-Start blasting aliens by clicking on the link below:
+Start blasting aliens by clicking on the link:
 https://andyhsh.github.io/spaceinvaders/
+
+## Controls
+
+Press Spacebar to shoot, and maneuver the spaceship with the left and right arrows.
